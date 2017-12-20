@@ -45,7 +45,10 @@ while true
 
 	if ENV['FOR_REAL'] == 'yes'
 		response = HTTParty.post(url, body: body, headers: headers)
-		puts response.response.code
+		if response.response.code != '202'
+			binding.pry
+			exit
+		end
 	else
 		puts body
 	end
